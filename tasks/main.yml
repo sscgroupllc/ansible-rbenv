@@ -47,6 +47,7 @@
     - zlib1g
     - zlib1g-dev
     - libffi-dev
+    - ruby-all-dev
   tags: rbenv
 
 - name: Install ruby-build as rbenv plugin
