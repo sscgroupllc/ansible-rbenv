@@ -46,6 +46,7 @@
     - libreadline6-dev
     - zlib1g
     - zlib1g-dev
+    - libffi-dev
   tags: rbenv
 
 - name: Install ruby-build as rbenv plugin
