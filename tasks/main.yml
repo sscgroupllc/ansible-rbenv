@@ -48,6 +48,8 @@
     - zlib1g-dev
     - libffi-dev
     - ruby-all-dev
+    - libxslt-dev
+    - libxml2-dev
   tags: rbenv
 
 - name: Install ruby-build as rbenv plugin
