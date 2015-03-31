@@ -1,5 +1,7 @@
 ---
 - name: Install dependencies for rbenv
+  sudo: yes
+  sudo_user: "{{ rbenv.user }}"
   apt: pkg=git
   tags: rbenv
 
@@ -35,6 +37,8 @@
   tags: rbenv
 
 - name: Install dependencies for ruby-build
+  sudo: yes
+  sudo_user: "{{ rbenv.user }}"
   apt: pkg={{ item }}
   with_items:
     - autoconf
