@@ -1,35 +1,35 @@
 ---
 - name: Install dependencies for rbenv
-  sudo: yes
-  sudo_user: "{{ rbenv.user }}"
+  become: yes
+  become_user: "{{ rbenv.user }}"
   apt: pkg=git
   tags: rbenv
 
 - name: Install rbenv
-  sudo: yes
-  sudo_user: "{{ rbenv.user }}"
-  git: repo=https://github.com/sstephenson/rbenv.git dest=~/.rbenv version={{ rbenv.version }}
+  become: yes
+  become_user: "{{ rbenv.user }}"
+  git: repo=https://github.com/rbenv/rbenv.git dest=~/.rbenv version={{ rbenv.version }}
   tags: rbenv
 
 - name: Add ~.rbenv/bin to PATH
-  sudo: yes
-  sudo_user: "{{ rbenv.user }}"
+  become: yes
+  become_user: "{{ rbenv.user }}"
   lineinfile: >
     dest="~/.profile"
     line="export PATH=$HOME/.rbenv/bin:$PATH"
   tags: rbenv
 
 - name: Eval rbenv init in ~/.profile
-  sudo: yes
-  sudo_user: "{{ rbenv.user }}"
+  become: yes
+  become_user: "{{ rbenv.user }}"
   lineinfile: >
     dest="~/.profile"
     line='eval "$(rbenv init -)"'
   tags: rbenv
 
 - name: Copy .gemrc to ~/.gemrc
-  sudo: yes
-  sudo_user: "{{ rbenv.user }}"
+  become: yes
+  become_user: "{{ rbenv.user }}"
   copy: src={{ item }} dest=~/.gemrc
   with_first_found:
     - ../../../files/.gemrc
@@ -37,8 +37,8 @@
   tags: rbenv
 
 - name: Install dependencies for ruby-build
-  sudo: yes
-  sudo_user: "{{ rbenv.user }}"
+  become: yes
+  become_user: "{{ rbenv.user }}"
   apt: pkg={{ item }}
   with_items:
     - autoconf
@@ -55,9 +55,9 @@
   tags: rbenv
 
 - name: Install ruby-build as rbenv plugin
-  sudo: yes
-  sudo_user: "{{ rbenv.user }}"
-  git: repo=https://github.com/sstephenson/ruby-build.git dest=~/.rbenv/plugins/ruby-build
+  become: yes
+  become_user: "{{ rbenv.user }}"
+  git: repo=https://github.com/rbenv/ruby-build.git dest=~/.rbenv/plugins/ruby-build
   tags: rbenv
 
 - name: Check if {{ rbenv.ruby_version }} is installed
