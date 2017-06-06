@@ -91,7 +91,7 @@
 - name: "Install bundler to {{ rbenv.ruby_version }}"
   become: yes
   become_user: "{{ rbenv.user }}"
-  command: "rbenv local {{ rbenv.ruby_version }} && gem install bundler"
+  shell: "rbenv local {{ rbenv.ruby_version }} && gem install bundler"
   tags: rbenv
 
 # - name: "Update rbenv from master"
