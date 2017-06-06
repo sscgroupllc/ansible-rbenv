@@ -88,8 +88,14 @@
   when: rbenv_check_default|failed
   tags: rbenv
 
-- name: "Update rbenv from master"
+- name: "Install bundler"
   become: yes
   become_user: "{{ rbenv.user }}"
-  command: "cd ~/.rbenv && git pull"
+  command: gem install bundler
   tags: rbenv
+
+# - name: "Update rbenv from master"
+#   become: yes
+#   become_user: "{{ rbenv.user }}"
+#   command: "cd ~/.rbenv && git pull"
+#   tags: rbenv
