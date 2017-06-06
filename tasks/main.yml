@@ -67,6 +67,10 @@
   ignore_errors: True
   tags: rbenv
 
+- name: Clear previous shims
+  file: state=absent path=~/.rbenv/shims/.rbenv-shim 
+  tags: rbenv
+
 - name: "Install {{ rbenv.ruby_version }}"
   command: "sudo -iu {{ rbenv.user }} rbenv install {{ rbenv.ruby_version }}"
   when: rbenv_check_install|failed
