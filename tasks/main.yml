@@ -89,5 +89,7 @@
   tags: rbenv
 
 - name: "Update rbenv from master"
+  become: yes
+  become_user: "{{ rbenv.user }}"
   command: "cd ~/.rbenv && git pull"
   tags: rbenv
