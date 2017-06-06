@@ -88,10 +88,10 @@
   when: rbenv_check_default|failed
   tags: rbenv
 
-- name: "Install bundler"
+- name: "Install bundler to {{ rbenv.ruby_version }}"
   become: yes
   become_user: "{{ rbenv.user }}"
-  command: gem install bundler
+  command: "rbenv local {{ rbenv.ruby_version }} && gem install bundler"
   tags: rbenv
 
 # - name: "Update rbenv from master"
