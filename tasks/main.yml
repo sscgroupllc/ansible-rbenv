@@ -38,7 +38,7 @@
 
 - name: Install dependencies for ruby-build
   become: yes
-  become_user: "{{ rbenv.user }}"
+  become_user: root
   apt: pkg={{ item }}
   with_items:
     - autoconf
@@ -82,4 +82,8 @@
 - name: "Set default ruby version to {{ rbenv.ruby_version }}"
   command: "sudo -iu {{ rbenv.user }} rbenv global {{ rbenv.ruby_version }}"
   when: rbenv_check_default|failed
+  tags: rbenv
+
+- name: "Update rbenv from master"
+  command: "cd ~/.rbenv && git pull"
   tags: rbenv
